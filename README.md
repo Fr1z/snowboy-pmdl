@@ -20,9 +20,9 @@ Please contact info@seasalt.ai if you would like to reach out to us.
 rec -r 16000 -c 1 -b 16 -e signed-integer -t wav record1.wav
 ```
 
-* Run the following command to train your personal model
+* Run the following command to train your personal model (Up to 8 WAV)
 ```
-python generate_pmdl.py -r1=record1.wav -r2=record2.wav -r3=record3.wav -lang=en -n=hotword.pmdl
+python generate_pmdl.py -r1=record1.wav -r2=record2.wav -r3=record3.wav -r4=record4.wav -lang=en -n=hotword.pmdl
 ```
 
 * Try the trained personal model
@@ -36,15 +36,15 @@ python demo.py hotword.pmdl
 docker build -t snowboy-pmdl .
 ``` 
 
-* This will create an image which you can run to train your personal model. In order for this to work you'll need to create a directory called model on your host machine (Ubuntu 18 or whatever) and place your three audio files in there. So the directory should look something like this (note: the wav files need the exact names as below or it won't work):
+* This will create an image which you can run to train your personal model. In order for this to work you'll need to create a directory called model on your host machine (Ubuntu 18 or whatever) and place at least three audio files in there, max 8 audio files are currently supported. So the directory should look something like this (note: the wav files need the exact names as below or it won't work):
 ```
 $ ls model/
-record1.wav  record2.wav  record3.wav
+record1.wav  record2.wav  record3.wav record4.wav record5.wav record6.wav
 ```
 
 * Finally you can call docker (note: need to be in the parent directory of model):
 ```
-docker run -it -v $(pwd)/model:/snowboy-master/examples/Python/model snowboy-pmdl
+docker run -it -v $(pwd)/model:/snowboy-pmdl-master/examples/Python/model snowboy-pmdl
 ```
 _This command mounts the model directory in the docker container and runs a script which calls generate_pmdl.py_
 

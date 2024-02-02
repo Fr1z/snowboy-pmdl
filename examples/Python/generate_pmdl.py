@@ -50,6 +50,7 @@ def main():
 
     for rec in recording_set:
         if rec is not None:
+            print("processing %s" % rec)
             _, data = wavfile.read(rec)
             data_cut = cut.CutTemplate(data.tobytes())
             enroll_ans = enroll.RunEnrollment(data_cut)
