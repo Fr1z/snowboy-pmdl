@@ -20,6 +20,11 @@ def main():
     parser.add_argument('-r1', '--record1', dest="record1", required=True, help="Record voice 1")
     parser.add_argument('-r2', '--record2', dest="record2", required=True, help="Record voice 2")
     parser.add_argument('-r3', '--record3', dest="record3", required=True, help="Record voice 3")
+    parser.add_argument('-r4', '--record4', dest="record4", required=False, help="Record voice 4")
+    parser.add_argument('-r5', '--record5', dest="record5", required=False, help="Record voice 5")
+    parser.add_argument('-r6', '--record6', dest="record6", required=False, help="Record voice 6")
+    parser.add_argument('-r7', '--record7', dest="record7", required=False, help="Record voice 7")
+    parser.add_argument('-r8', '--record8', dest="record8", required=False, help="Record voice 8")
     parser.add_argument('-n', '--name', dest="model_name", required=True, help="Personal model name")
     parser.add_argument('-lang', '--language', default="en", dest="language", help="Language")
     args = parser.parse_args()
@@ -41,12 +46,13 @@ def main():
     assert cut.BitsPerSample() == enroll.BitsPerSample()
     print("channels: %d, sample rate: %d, bits: %d" % (cut.NumChannels(), cut.SampleRate(), cut.BitsPerSample()))
 
-    recording_set = [args.record1, args.record2, args.record3]
+    recording_set = [args.record1, args.record2, args.record3, args.record4, args.record5, args.record6, args.record7, args.record8]
+
     for rec in recording_set:
-        print("processing %s" % rec)
-        _, data = wavfile.read(rec)
-        data_cut = cut.CutTemplate(data.tobytes())
-        enroll_ans = enroll.RunEnrollment(data_cut)
+        if rec is not None:
+            _, data = wavfile.read(rec)
+            data_cut = cut.CutTemplate(data.tobytes())
+            enroll_ans = enroll.RunEnrollment(data_cut)
 
     check_enroll_output(enroll_ans)
 
