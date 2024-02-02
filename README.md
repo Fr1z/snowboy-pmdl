@@ -36,10 +36,10 @@ python demo.py hotword.pmdl
 docker build -t snowboy-pmdl .
 ``` 
 
-* This will create an image which you can run to train your personal model. In order for this to work you'll need to create a directory called model on your host machine (Ubuntu 18 or whatever) and place at least three audio files in there, max 8 audio files are currently supported. So the directory should look something like this (note: the wav files need the exact names as below or it won't work):
+* This will create an image which you can run to train your personal model. In order for this to work you'll need to create a directory called model on your host machine (Ubuntu 18 or whatever) and place at least three audio files in there (8 audio files are currently supported). So the directory should look something like this (note: the wav files need the exact names as below or it won't work):
 ```
 $ ls model/
-record1.wav  record2.wav  record3.wav record4.wav record5.wav record6.wav
+record1.wav  record2.wav  record3.wav record4.wav record5.wav record6.wav record7.wav record8.wav
 ```
 
 * Finally you can call docker (note: need to be in the parent directory of model):

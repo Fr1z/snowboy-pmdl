@@ -48,8 +48,11 @@ def main():
 
     recording_set = [args.record1, args.record2, args.record3, args.record4, args.record5, args.record6, args.record7, args.record8]
 
+    print(recording_set)
+    print("\n")
+    
     for rec in recording_set:
-        if rec is not None:
+        if (rec is not None):
             print("processing %s" % rec)
             _, data = wavfile.read(rec)
             data_cut = cut.CutTemplate(data.tobytes())
