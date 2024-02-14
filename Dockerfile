@@ -1,6 +1,10 @@
 FROM ubuntu:16.04
 
 RUN apt update && apt --yes --force-yes install wget unzip build-essential python python-dev virtualenv portaudio19-dev
+
+RUN rm -rf snowboy-pmdl-master && \
+    rm -rf master.zip
+
 RUN wget https://github.com/Fr1z/snowboy-pmdl/archive/refs/heads/master.zip && unzip master.zip
 
 

@@ -1,5 +1,6 @@
 
 import argparse
+import os
 import tempfile
 import uuid
 from scipy.io import wavfile
@@ -52,11 +53,13 @@ def main():
     print("\n")
     
     for rec in recording_set:
-        if (rec is not None):
+        if (rec is not None and os.path.exists(rec)):
             print("processing %s" % rec)
             _, data = wavfile.read(rec)
             data_cut = cut.CutTemplate(data.tobytes())
             enroll_ans = enroll.RunEnrollment(data_cut)
+        else: 
+            print("not found %s" % rec)
 
     check_enroll_output(enroll_ans)
 
